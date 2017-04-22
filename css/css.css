@@ -1,0 +1,35 @@
+a img
+{
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    margin: auto;
+}
+.mm {
+align-content: center;
+}
+.title , .s-title{
+    font-family: 'Signika', sans-serif;
+    color:#02b3e4;
+}
+
+.logo{
+    margin-top: 20px;
+}
+
+.fature-work{
+    font-family: Arvo, sans-serif;
+    color: #7d97ad;
+}
+
+.work-name{
+    color:#2d3c49;
+
+}

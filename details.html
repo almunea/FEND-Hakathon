@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    <link rel="stylesheet" href="css/css.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript">
+        //        $(function(){
+        //            $.getJSON("package.json", function(data) {
+        ////                console.log(data);
+        //                $('body').append(data.results[0].title);
+        //                console.log("hi");
+        //            });
+        //            }).error(function(){
+        //                console.log('error1');
+        //            });
+        //            $.ajax({
+        //                url: "package.json",
+        //                dataType: "json",
+        //                success: function(data) {
+        //                    console.log(data);
+        //                    $('body').append(data.results[0].title);
+        //                },
+        //                error: function(jqXHR, textStatus, errorThrown) {
+        //                    console.log('ERROR', textStatus, errorThrown);
+        //                }
+        //            });
+
+        jQuery.ajax({
+            url: "http://api.themoviedb.org/3/movie/popular?api_key=bab007b9a6288af1455b8cee1f4f9d36",
+            type: "GET",
+
+            contentType: 'application/json; charset=utf-8',
+            success: function(resultData) {
+                //here is your json.
+                // process it
+
+
+
+                id=resultData.results[0].id;
+                var img = document.createElement("IMG");
+                img.src = "http://image.tmdb.org/t/p/w154"+resultData.results[0].poster_path;
+
+                $('#poster').append(img);
+                $('#title').append(resultData.results[0].title);
+                $('#rating').append(resultData.results[0].vote_average+"/10");
+                var t ="release date :" +resultData.results[0].release_date;
+                $('#release_date').append(t);
+
+                var p ="move popularity : "+resultData.results[0].popularity+" users";
+                $('#popularity').append(p);
+                $('.s-title').append(resultData.results[0].overview);
+
+                console.log(resultData);
+
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+            },
+
+            timeout: 120000,
+        });
+
+
+        jQuery.ajax({
+            url: "http://api.themoviedb.org/3/movie/321612/videos?api_key=bab007b9a6288af1455b8cee1f4f9d36",
+            type: "GET",
+
+            contentType: 'application/json; charset=utf-8',
+            success: function(resultData) {
+                //here is your json.
+                // process it
+                var tube =document.createElement("URL")
+                var a = document.createElement('a');
+                var linkText = document.createTextNode("#trailer1");
+                a.appendChild(linkText);
+                a.title = "#trailer1";
+                a.href = "https://www.youtube.com/watch?v="+resultData.results[0].key;
+                $('.trailer').append(a.href);
+                document.body.appendChild(a);
+
+
+
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+            },
+
+            timeout: 120000,
+        });
+
+    </script>
+</head>
+<body>
+<header class="row">
+    <div  id="poster" class=" logo col-md-4">
+
+    </div>
+    <div class="col-md-4 text-right text-uppercase">
+
+        <h1 id="title"></h1>
+
+        <h4 class="s-title"></h4>
+        <hr>
+    </div>
+</header>
+
+<div class="row" >
+    <div class="col-md-12">
+        <h2 class="fature-work text-uppercase">Info</h2>
+    </div>
+</div>
+<div class="row" >
+    <div id="release_date" class="work-name col-md-4">
+
+    </div>
+    <div id="popularity" class="work-name col-md-4">
+
+    </div>
+    <div id="rating" class=" work-name col-md-4">
+
+    </div>
+    <div  class="col-md-12">
+        <h2 class="fature-work text-uppercase">trailers</h2≥
+    </div>
+
+</div>
+<div class="row" >
+    <div id="trailer" class="col-md-12">
+
+    </div>
+    <ul></ul>
+</body>
+</html>

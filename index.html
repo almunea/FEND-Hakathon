@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<link rel="stylesheet" href="css/css.css">
+
+    <script>
+
+        jQuery.ajax({
+            url: "http://api.themoviedb.org/3/movie/popular?api_key=bab007b9a6288af1455b8cee1f4f9d36",
+            type: "GET",
+
+            contentType: 'application/json; charset=utf-8',
+            success: function(resultData) {
+                //here is your json.
+                // process it
+                var img1 = document.createElement("IMG");
+                var img2 = document.createElement("IMG");
+                var img3 = document.createElement("IMG");
+                img1.src = "http://image.tmdb.org/t/p/original"+resultData.results[0].backdrop_path;
+                img2.src = "http://image.tmdb.org/t/p/original"+resultData.results[1].backdrop_path;
+                img3.src = "http://image.tmdb.org/t/p/original"+resultData.results[2].backdrop_path;
+                $('#m1').append(img1);
+                $('#m2').append(img2);
+                $('#m3').append(img3);
+
+                for (var i = 0; i < resultData.results.length; i++) {
+
+
+
+                    var img = document.createElement("IMG");
+                    img.src = "http://image.tmdb.org/t/p/w185"+resultData.results[i].poster_path;
+
+                    var para = document.createElement("a");
+
+                    $(".mm").attr("href", 'details.html');
+
+                    $('.mm').append(img);
+                    console.log(resultData);
+
+
+
+
+
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+            },
+
+            timeout: 120000,
+        });
+    </script>
+    <!-- Latest compiled and minified CSS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <!-- NAVBAR -->
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header"><a class="navbar-brand navbar-link" href="#"><i class="glyphicon glyphicon-phone"></i>Mobile App</a>
+            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active" role="presentation"><a href="#">First Item</a></li>
+                <li role="presentation"><a href="#">Second Item</a></li>
+                <li role="presentation"><a href="#">Third Item</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <!-- slider -->
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1" ></li>
+            <li data-target="#myCarousel" data-slide-to="2" ></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div id="m1" class="item active">
+
+            </div>
+
+            <div id="m2" class="item">
+            </div>
+
+            <div id="m3" class="item">
+            </div>
+
+
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <br /> <br />
+<!-- FINISH slider -->
+
+
+
+
+<a class="mm" href="" style="margin-right: 500px" ></a>
+
+
+</div>
+</body>
+</html>
+
